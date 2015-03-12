@@ -15,9 +15,9 @@ var Configstore = require('configstore');
 var yeoman = require('yeoman-generator');
 var log = require('verbalize');
 
-log.runner = 'generator-node-cli';
+log.runner = 'generator-coffee-cli';
 
-var cliConfig = new Configstore('generator-node-cli');
+var cliConfig = new Configstore('generator-coffee-cli');
 
 var CliGenerator = module.exports = function CliGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
@@ -130,6 +130,11 @@ CliGenerator.prototype.askFor = function askFor() {
 CliGenerator.prototype.app = function app() {
   this.mkdir('bin');
   this.template('cli', ('bin/' + this.cliname));
+};
+
+CliGenerator.prototype.appcoffee = function app() {
+  this.mkdir('src');
+  this.template('cli.coffee', ('src/' + this.cliname + '.coffee'));
 };
 
 CliGenerator.prototype.readme = function readme() {
